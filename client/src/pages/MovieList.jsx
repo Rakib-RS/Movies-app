@@ -1,89 +1,86 @@
-import React , {Component} from 'react'
-import styled from 'styled-components'
+import React, { Component } from 'react'
+import ReactTable from 'react-table'
 import api from '../api'
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-// import react table
-//import ReactTable from "react-table";
-//import 'react-table/react-table.css'
-//import ReactTable from "react-table";
- 
+
+import styled from 'styled-components'
+
+import 'react-table/react-table.css'
+
 const Wrapper = styled.div`
-    padding : 0 40px 40px 40px;
+    padding: 0 40px 40px 40px;
 `
 
-class MoviesList extends Component{
-    constructor(props){
+class MoviesList extends Component {
+    constructor(props) {
         super(props)
         this.state = {
             movies: [],
             columns: [],
-            isloading: false,
-            columnDefs: [{
-                headerName: "Make", field: "make"
-              }, {
-                headerName: "Model", field: "model"
-              }, {
-                headerName: "Price", field: "price"
-              }],
-              rowData: [{
-                make: "Toyota", model: "Celica", price: 35000
-              }, {
-                make: "Ford", model: "Mondeo", price: 32000
-              }, {
-                make: "Porsche", model: "Boxter", price: 72000
-              }]
+            isLoading: false,
         }
     }
-    componentDidMount = () =>{
-        this.setState({isloading:true})
-        api.getAllMovies().then(movies =>{
+
+    componentDidMount = async () => {
+        this.setState({ isLoading: true })
+
+        await api.getAllMovies().then(movies => {
             this.setState({
                 movies: movies.data.data,
-                isloading:false
+                isLoading: false,
             })
         })
-        
-    } 
+    }
 
-
-    render(){
-        const {movies} = this.state
+    render() {
+        const { movies, isLoading } = this.state
         console.log(movies);
-        console.log('TCL : MoviesList -> render -> movies',movies);
+        
+        //console.log('TCL: MoviesList -> render -> movies', movies)
+        let showTable = true;
+        if(!movies.length)
+            showTable = false;
+
+
         const columns = [
             {
-                headerName: "ID",
-                field: '_id',
-                
+                Header: 'ID',
+                accessor: '_id',
+                filterable: true,
             },
             {
-                headerName:'Name',
-                field: 'name',
+                Header: 'Name',
+                accessor: 'name',
+                filterable: true,
             },
             {
-                headerName:'Rating',
-                field: 'rating',
-                
-            }
+                Header: 'Rating',
+                accessor: 'ratting',
+                filterable: true,
+            },
+            {
+                Header: 'Time',
+                accessor: 'time',
+                Cell: props => <span>{props.value.join(' / ')}</span>,
+            },
         ]
+
         
-        return(
+
+        return (
             <Wrapper>
-                <div
-                    className="ag-theme-balham"
-                    style={{
-                    height: '800px',
-                    width: '100%' }}
-                >
-                    <AgGridReact
-                    columnDefs={columns}
-                    rowData={movies}>
-                    </AgGridReact>
-                </div>
+                {showTable &&(
+                    <ReactTable
+                        data= {movies}
+                        columns = {columns}
+                        loading = {isLoading}
+                        defaultPageSize ={10}
+                        showPageSizeOptions={true}
+                        minRows={0}
+                    />
+                )}
             </Wrapper>
         )
     }
 }
-export default MoviesList;
+
+export default MoviesList
