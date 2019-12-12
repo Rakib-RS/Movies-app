@@ -95,7 +95,7 @@ class MoviesInsert extends Component {
                 onChange = {this.handleChangeInputTime}
              />
               <Button onClick={this.handleIncludeMovie}>ADD Movie</Button>
-              <CancelButton href='/movies/list'>Cansel</CancelButton>
+              <CancelButton href='/movies/list'>Cancel</CancelButton>
               
             </Wrapper>
         )
