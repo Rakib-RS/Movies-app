@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from '../api'
 import styled from 'styled-components'
+
 const Title = styled.h1.attrs({
     className: 'h1',
 })``
@@ -33,7 +34,7 @@ class MoviesInsert extends Component {
         super(props)
         this.state = {
             name: '',
-            rating : '',
+            ratting : '',
             time: ''
         }
     }
@@ -42,17 +43,30 @@ class MoviesInsert extends Component {
         this.setState({name})
     }
     handleChangeInputRating = async (event) =>{
-        const rating = event.target.validity.valid
-        ? event.target.value : this.state.rating
-        this.setState({rating})
+        const ratting = event.target.validity.valid
+        ? event.target.value : this.state.ratting
+        this.setState({ratting})
     }
     handleChangeInputTime = async (event) => {
         const time = event.target.value
         this.setState({time})
     }
+    handleIncludeMovie = async ()=>{
+        const {name,ratting,time} = this.state;
+        const arrayTime = time.split('/');
+        const payload = {name,ratting,time: arrayTime};
+        await api.insertMovie(payload).then( (res) =>{
+            window.alert('Movie Created Succesfully');
+            this.setState({
+                name:'',
+                ratting:'',
+                time:''
+            })
+        })
+    }
     
     render(){
-        const {name,rating,time} = this.state;
+        const {name,ratting,time} = this.state;
         return(
             <Wrapper>
               <Title>Create Movie</Title>
@@ -71,7 +85,7 @@ class MoviesInsert extends Component {
                 min="0"
                 max="10"
                 pattern="[0-9]+([,\.][0-9]+)?"
-                value = {rating}
+                value = {ratting}
                 onChange = {this.handleChangeInputRating}
              />
              <Label>Time:</Label>
@@ -80,7 +94,7 @@ class MoviesInsert extends Component {
                 value={time}
                 onChange = {this.handleChangeInputTime}
              />
-              <Button>ADD</Button>
+              <Button onClick={this.handleIncludeMovie}>ADD Movie</Button>
               <CancelButton href='/movies/list'>Cansel</CancelButton>
               
             </Wrapper>
