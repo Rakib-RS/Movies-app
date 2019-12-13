@@ -29,6 +29,7 @@ const CancelButton = styled.a.attrs({
 })`
 margin: 15px 15px 15px 5px;
 `
+
 class MoviesInsert extends Component {
     constructor(props){
         super(props)

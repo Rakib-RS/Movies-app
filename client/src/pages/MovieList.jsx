@@ -9,6 +9,42 @@ import 'react-table/react-table.css'
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
+const Delete = styled.div`
+    color: #ff0000;
+    cursor: pointer;
+`
+
+const Update = styled.div`
+    color: #ef9b0f;
+    cursor: pointer
+`
+class UpdateMovie extends Component {
+    updateUser = event => {
+        event.preventDefault()
+
+        window.location.href = `/movies/update/${this.props.id}`
+    }
+
+    render() {
+        return <Update onClick={this.updateUser}>Update</Update>
+    }
+}
+class DeleteMovie extends Component{
+    deleteUser = (event) =>{
+        event.preventDefault()
+        if(
+            window.confirm(`do you want to delete the movie ${this.props.id} permanently?`)
+        ){
+            api.deleteMovieById(this.props.id);
+            window.location.reload();
+        }
+    }
+    render(){
+        return(
+            <Delete onClick={this.deleteUser}>Delete</Delete>
+        )
+    }
+}
 
 class MoviesList extends Component {
     constructor(props) {
@@ -62,6 +98,29 @@ class MoviesList extends Component {
                 accessor: 'time',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
+            {
+                Header: '',
+                accessor: '',
+                Cell: function(props){
+                    return(
+                        <span >
+                            <DeleteMovie id={props.original._id}/>
+                        </span>
+                    )
+                }
+            },
+            {
+                Header: '',
+                accessor: '',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <UpdateMovie id={props.original._id} />
+                        </span>
+                    )
+                },
+            },
+            
         ]
 
         
