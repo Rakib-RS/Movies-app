@@ -1,3 +1,4 @@
 import MoviesList from './MovieList'
 import MovieInsert from './MoviesInsert'
-export {MoviesList,MovieInsert}
+import MoviesUpdate from './MoviesUpdate'
+export {MoviesList,MovieInsert,MoviesUpdate}

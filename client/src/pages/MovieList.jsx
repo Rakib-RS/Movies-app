@@ -9,15 +9,17 @@ import 'react-table/react-table.css'
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
+
+const Update = styled.div`
+    color: #ef9b0f;
+    cursor: pointer;
+`
+
 const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
 `
 
-const Update = styled.div`
-    color: #ef9b0f;
-    cursor: pointer
-`
 class UpdateMovie extends Component {
     updateUser = event => {
         event.preventDefault()
@@ -29,20 +31,23 @@ class UpdateMovie extends Component {
         return <Update onClick={this.updateUser}>Update</Update>
     }
 }
-class DeleteMovie extends Component{
-    deleteUser = (event) =>{
+
+class DeleteMovie extends Component {
+    deleteUser = event => {
         event.preventDefault()
-        if(
-            window.confirm(`do you want to delete the movie ${this.props.id} permanently?`)
-        ){
-            api.deleteMovieById(this.props.id);
-            window.location.reload();
+
+        if (
+            window.confirm(
+                `Do tou want to delete the movie ${this.props.id} permanently?`,
+            )
+        ) {
+            api.deleteMovieById(this.props.id)
+            window.location.reload()
         }
     }
-    render(){
-        return(
-            <Delete onClick={this.deleteUser}>Delete</Delete>
-        )
+
+    render() {
+        return <Delete onClick={this.deleteUser}>Delete</Delete>
     }
 }
 
@@ -69,13 +74,7 @@ class MoviesList extends Component {
 
     render() {
         const { movies, isLoading } = this.state
-        console.log(movies);
-        
-        //console.log('TCL: MoviesList -> render -> movies', movies)
-        let showTable = true;
-        if(!movies.length)
-            showTable = false;
-
+        console.log('TCL: MoviesList -> render -> movies', movies)
 
         const columns = [
             {
@@ -90,7 +89,7 @@ class MoviesList extends Component {
             },
             {
                 Header: 'Rating',
-                accessor: 'ratting',
+                accessor: 'rating',
                 filterable: true,
             },
             {
@@ -103,11 +102,12 @@ class MoviesList extends Component {
                 accessor: '',
                 Cell: function(props){
                     return(
-                        <span >
-                            <DeleteMovie id={props.original._id}/>
+                        <span>
+                            <UpdateMovie id={props.original._id}></UpdateMovie>
                         </span>
                     )
                 }
+
             },
             {
                 Header: '',
@@ -115,7 +115,7 @@ class MoviesList extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <UpdateMovie id={props.original._id} />
+                            <DeleteMovie id={props.original._id} />
                         </span>
                     )
                 },
@@ -123,16 +123,19 @@ class MoviesList extends Component {
             
         ]
 
-        
+        let showTable = true
+        if (!movies.length) {
+            showTable = false
+        }
 
         return (
             <Wrapper>
-                {showTable &&(
+                {showTable && (
                     <ReactTable
-                        data= {movies}
-                        columns = {columns}
-                        loading = {isLoading}
-                        defaultPageSize ={10}
+                        data={movies}
+                        columns={columns}
+                        loading={isLoading}
+                        defaultPageSize={10}
                         showPageSizeOptions={true}
                         minRows={0}
                     />
