@@ -36,9 +36,32 @@ const CancelButton = styled.a.attrs({
 `
 
 class MoviesUpdate extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            id: this.props.match.params.id,
+            name: '',
+            ratting: '',
+            time: '',
+        }
+    }
+
+
     render(){
+        const {name,ratting,time} = this.state;
         return(
-            <div>Hello update here form</div>
+            <Wrapper>
+                <Title>Movie Upadte</Title>
+                <Label>Name:</Label>
+                <InputText/>
+                <Label>Rating:</Label>
+                <InputText/>
+                <Label>Time:</Label>
+                <InputText/>
+                <Button>Update</Button>
+                <CancelButton href='/movies/list'>Cancel</CancelButton>
+            </Wrapper>
+
         )
     }
 }
