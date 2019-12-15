@@ -89,7 +89,7 @@ class MoviesList extends Component {
             },
             {
                 Header: 'Rating',
-                accessor: 'rating',
+                accessor: 'ratting',
                 filterable: true,
             },
             {
