@@ -1,7 +1,9 @@
 {
   "name": "movies-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "start": "node server",
     "build": "cd client/ && npm install && npm run build"
@@ -25,9 +27,10 @@
   "bugs": {
     "url": "https://github.com/Rakib-RS/Movies-app/issues"
   },
-  "homepage": "https://github.com/Rakib-RS/Movies-app",
+  "homepage": "https://github.com/Rakib-RS/Movies-app.git",
   "description": "",
   "dependencies": {
-    "concurrently": "^5.0.2"
+    "concurrently": "^5.0.2",
+    "express": "^4.16.4"
   }
 }
