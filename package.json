@@ -1,0 +1,25 @@
+{
+  "name": "movies-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js --prefix server",
+    "server": "nodemon server.js --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rakib-RS/Movies-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rakib-RS/Movies-app/issues"
+  },
+  "homepage": "https://github.com/Rakib-RS/Movies-app#readme"
+}

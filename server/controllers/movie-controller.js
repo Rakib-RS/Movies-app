@@ -29,6 +29,9 @@ const createMovie =(req,res)=>{
 };
 const updateMovie = (req,res) =>{
     const body = req.body;
+    console.log(body);
+    
+    
     if(!body){
         return res.json({
             success:false,

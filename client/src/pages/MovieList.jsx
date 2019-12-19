@@ -75,6 +75,7 @@ class MoviesList extends Component {
     render() {
         const { movies, isLoading } = this.state
         console.log('TCL: MoviesList -> render -> movies', movies)
+        console.log("ok")
 
         const columns = [
             {
