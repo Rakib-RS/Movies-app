@@ -9,7 +9,7 @@ const db = require('./db/data');
 var router = require('./routes/movie-router');
 
 db.on('error',console.error.bind(console,'Mongodb Connection err'));
-var port = process.env.PORT | 3300;
+var port = process.env.PORT || 3300;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
