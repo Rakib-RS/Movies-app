@@ -12,7 +12,12 @@ db.on('error',console.error.bind(console,'Mongodb Connection err'));
 var port = process.env.PORT || 3300;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-
+/*Adds the react production build to serve react requests*/
+app.use(express.static(path.join(__dirname, "../client/build")));
+/*React root*/
+app.get("*", (req, res) => {
+res.sendFile(path.join(__dirname + "../client/build/index.html"));
+});
 app.use(logger('dev'));
 app.get('/',(req,res) =>{
     res.send('hello body');

@@ -5,9 +5,9 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "node server",
-    "build": "cd client/ && npm install && npm run build"
-  },
+    "start": "cd backend && npm install && node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+    },
   "cacheDirectories": [
     "node_modules",
     "react-ui/node_modules"
