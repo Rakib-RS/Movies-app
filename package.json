@@ -5,11 +5,11 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "node cd server/ && node server.js",
+    "start": "cd server/ && node server.js",
     "build": "cd client/ && npm install && npm run build"
     },
   "cacheDirectories": [
-    "node_modules",
+    "server/node_modules",
     "client/node_modules"
   ],
   "repository": {
