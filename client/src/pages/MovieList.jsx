@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
-
+import axios from 'axios'
 import styled from 'styled-components'
 
 import 'react-table/react-table.css'
@@ -64,12 +64,16 @@ class MoviesList extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getAllMovies().then(movies => {
+       await api.getAllMovies().then(movies => {
             this.setState({
                 movies: movies.data.data,
                 isLoading: false,
             })
-        })
+        })/*
+        axios.get('/api/movies')
+           .then((response)=>{
+               this.setState({movies: response.data.data,isLoading: false,})
+           })*/
     }
 
     render() {
