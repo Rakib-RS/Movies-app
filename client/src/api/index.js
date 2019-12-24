@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const port = 3300;
+const port = process.env.PORT || 3300;
 const api = axios.create({
-    baseURL: 'http://122bf6a3.ngrok.io/api',
+    baseURL: 'http://localhost:'+port+'/api',
 })
 
 export const insertMovie = (payload) => api.post(`/movie`, payload)
