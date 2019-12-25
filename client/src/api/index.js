@@ -1,14 +1,7 @@
 import axios from 'axios'
-<<<<<<< HEAD
 //const port = process.env.PORT || 3300;
 const api = axios.create({
     baseURL: '/api',
-=======
-
-const port = process.env.PORT || 3300;
-const api = axios.create({
-    baseURL: 'http://localhost:'+port+'/api',
->>>>>>> 13ed19fdb810b54ff70e14f8e3cc69449912cd83
 })
 
 export const insertMovie = (payload) => api.post(`/movie`, payload)
