@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const port = process.env.PORT || 3300;
+//const port = process.env.PORT || 3300;
 const api = axios.create({
     baseURL: '/api',
 })

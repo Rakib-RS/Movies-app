@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
-import axios from 'axios'
+//import axios from 'axios'
 import styled from 'styled-components'
 
 import 'react-table/react-table.css'

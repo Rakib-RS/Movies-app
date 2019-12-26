@@ -14,10 +14,13 @@ const List = styled.div.attrs({
 class Links extends Component{
     render(){
         return(
+            
             <React.Fragment>
-                <Link to='/' className='navbar-brand'>
-                    MERN
+                
+                <Link to='/home' className='navbar-brand' >
+                    Home
                 </Link>
+                
                 <Collapse>
                      <List>
                         <Item>
@@ -28,6 +31,11 @@ class Links extends Component{
                         <Item>
                             <Link to="/movies/create" className="nav-link">
                                 Create Movie
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/about" className="nav-link">
+                                About
                             </Link>
                         </Item>
                     </List>
