@@ -34,8 +34,8 @@ class Links extends Component{
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/about" className="nav-link">
-                                About
+                            <Link to="/contact" className="nav-link">
+                                Contact
                             </Link>
                         </Item>
                     </List>

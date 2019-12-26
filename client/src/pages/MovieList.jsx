@@ -131,6 +131,11 @@ class MoviesList extends Component {
         let showTable = true
         if (!movies.length) {
             showTable = false
+            return(
+                <div>
+                    oopps something wrong
+                </div>
+            )
         }
 
         return (

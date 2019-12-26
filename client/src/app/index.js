@@ -17,7 +17,7 @@ function App() {
                 <Route
                     path = "/movies/update/:id" exact component = {MoviesUpdate}
                 />
-                <Route path="/about" exact component = {About} />
+                <Route path="/contact" exact component = {About} />
                 
             </Switch>
         </Router>
