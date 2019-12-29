@@ -58,6 +58,7 @@ class MoviesList extends Component {
             movies: [],
             columns: [],
             isLoading: false,
+            intervalIsSet:false,
         }
     }
 
@@ -133,7 +134,7 @@ class MoviesList extends Component {
             showTable = false
             return(
                 <div>
-                    oopps something wrong
+                    loading....
                 </div>
             )
         }
