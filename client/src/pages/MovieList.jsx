@@ -70,12 +70,18 @@ class MoviesList extends Component {
                 movies: movies.data.data,
                 isLoading: false,
             })
+           
+            
         })/*
         axios.get('/api/movies')
            .then((response)=>{
                this.setState({movies: response.data.data,isLoading: false,})
            })*/
+        ;
+        
     }
+    
+    
 
     render() {
         const { movies, isLoading } = this.state
